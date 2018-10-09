@@ -1,4 +1,4 @@
-(defproject com.yetanalytics/faker "0.2.3-SNAPSHOT"
+(defproject com.yetanalytics/faker "0.2.4-SNAPSHOT"
   :description "Generate fake data, port of ruby faker"
   :url "http://github.com/paraseba/faker"
   :license {:name "Eclipse Public License 1.0"
