@@ -41,7 +41,6 @@
   ([name]
    (-> name
      (string/split #"\W+")
-     shuffle
      (->> (string/join (rs/rand-nth ["." "-"])))
      string/lower-case))
 
