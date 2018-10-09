@@ -4,3 +4,5 @@
 /classes
 /autodoc/**
 /target/
+.nrepl*
+.lein*

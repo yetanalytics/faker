@@ -2,27 +2,28 @@
   "Create fake data for person names"
   (:use
      [clojure.string :only [join]]
-     faker.name-data))
+     faker.name-data)
+  (:require [random-seed :as rs]))
 
 (defn first-name
   "Create a fake person first name"
   []
-  (rand-nth first-names))
+  (rs/rand-nth first-names))
 
 (defn last-name
   "Create a fake person last name"
   []
-  (rand-nth last-names))
+  (rs/rand-nth last-names))
 
 (defn prefix
   "Create a fake person prefix, like in Mr., Mrs., etc."
   []
-  (rand-nth prefixes))
+  (rs/rand-nth prefixes))
 
 (defn suffix
   "Create a fake person suffix, like in Jr., Sr., etc."
   []
-  (rand-nth suffixes))
+  (rs/rand-nth suffixes))
 
 (defn- comb [& funs]
   (fn [] (join " " (map #(%) funs))))

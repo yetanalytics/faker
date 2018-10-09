@@ -2,12 +2,13 @@
   "Create fake textual data"
   (:use
      [clojure.string :only (join capitalize)]
-     faker.lorem-data))
+     faker.lorem-data)
+  (:require [random-seed.core :as rs]))
 
 (defn words
   "Lazy sequence of random latin words"
   []
-  (repeatedly #(rand-nth latin-words)))
+  (repeatedly #(rs/rand-nth latin-words)))
 
 (defn sentences
   "Lazy sequence of random latin sentences.
@@ -20,7 +21,7 @@
    (map
      (fn [n]
        (str (capitalize (join " " (take n (words)))) "."))
-     (repeatedly #(+ word-count (rand-int 6))))))
+     (repeatedly #(+ word-count (rs/rand-int 6))))))
 
 (defn paragraphs
   "Lazy sequence of random latin paragraphs.
@@ -33,5 +34,5 @@
    (map
      (fn [n]
        (join " " (take n (sentences))))
-     (repeatedly #(+ sentence-count (rand-int 3))))))
+     (repeatedly #(+ sentence-count (rs/rand-int 3))))))
 

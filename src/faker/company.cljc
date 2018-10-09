@@ -3,15 +3,16 @@
   (:use
      [clojure.string :only (join)]
      faker.company-data)
-  (:require [faker.name :as fkname]))
+  (:require [faker.name :as fkname]
+            [random-seed.core :as rs]))
 
 (defn suffix
   "Return a random company suffix, like Inc or Group."
   []
-  (rand-nth suffixes))
+  (rs/rand-nth suffixes))
 
 (defn- phrase [source]
-  (join " " (map #(rand-nth %) source)))
+  (join " " (map #(rs/rand-nth %) source)))
 
 (defn catch-phrase
   "Return a random company catch phrase."
@@ -33,4 +34,4 @@
   "Lazy sequence of random company names"
   (repeatedly
     (fn []
-      ((rand-nth formats)))))
+      ((rs/rand-nth formats)))))

@@ -2,13 +2,14 @@
   "Create fake address data."
   (:use faker.address-data)
   (:require [faker.name :as na]
-            [clojure.string :as string]))
+            [clojure.string :as string]
+            [random-seed.core :as rs]))
 
 
 (defn- numerify [& formats]
-  (string/replace (rand-nth formats)
+  (string/replace (rs/rs/rand-nth formats)
                   #"#"
-                  (fn [_] (str (rand-int 10)))))
+                  (fn [_] (str (rs/rand-int 10)))))
 
 
 (defn zip-code
@@ -19,27 +20,27 @@
 (defn us-state
   "Returns a random USA state."
   []
-  (rand-nth us-states))
+  (rs/rand-nth us-states))
 
 (defn us-state-abbr
   "Returns a random USA state abbreviation."
   []
-  (rand-nth us-state-abbrs))
+  (rs/rand-nth us-state-abbrs))
 
 (defn city-prefix
   "Returns a random city prefix, like North or South."
   []
-  (rand-nth city-prefixes))
+  (rs/rand-nth city-prefixes))
 
 (defn city-suffix
   "Returns a random city suffix, like town or land."
   []
-  (rand-nth city-suffixes))
+  (rs/rand-nth city-suffixes))
 
 (defn street-suffix
   "Returns a random street suffix, like Avenue or Bridge."
   []
-  (rand-nth street-suffixes))
+  (rs/rand-nth street-suffixes))
 
 (def ^{:private true} city-formats
   [#(format "%s %s%s" (city-prefix) (na/first-name) (city-suffix))
@@ -49,7 +50,7 @@
 
 (defn city []
   "Returns a random city name."
-  ((rand-nth city-formats)))
+  ((rs/rand-nth city-formats)))
 
 (def ^{:private true} street-formats
   [#(format "%s %s" (na/last-name) (street-suffix))
@@ -57,7 +58,7 @@
 
 (defn street-name []
   "Returns a random street name."
-  ((rand-nth street-formats)))
+  ((rs/rand-nth street-formats)))
 
 (defn secondary-address []
   "Returns a random secondary part of an address."
@@ -79,19 +80,19 @@
 (defn uk-county
   "Return a random UK county."
   []
-  (rand-nth uk-counties))
+  (rs/rand-nth uk-counties))
 
 (defn uk-country
   "Return a random UK country."
   []
-  (rand-nth uk-countries))
+  (rs/rand-nth uk-countries))
 
 (def ^{:private true} alphabet (seq "abcdefghijklmnopqrstuvwxyz"))
 
 (defn- letterify [& formats]
-  (string/replace (rand-nth formats)
+  (string/replace (rs/rand-nth formats)
                   #"\?"
-                  (fn [_] (str (rand-nth alphabet)))))
+                  (fn [_] (str (rs/rand-nth alphabet)))))
 
 (defn uk-postcode
   "Return a random UK postcode."
