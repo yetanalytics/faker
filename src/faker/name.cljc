@@ -3,7 +3,7 @@
   (:use
      [clojure.string :only [join]]
      faker.name-data)
-  (:require [random-seed :as rs]))
+  (:require [random-seed.core :as rs]))
 
 (defn first-name
   "Create a fake person first name"

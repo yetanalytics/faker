@@ -7,7 +7,7 @@
 
 
 (defn- numerify [& formats]
-  (string/replace (rs/rs/rand-nth formats)
+  (string/replace (rs/rand-nth formats)
                   #"#"
                   (fn [_] (str (rs/rand-int 10)))))
 
